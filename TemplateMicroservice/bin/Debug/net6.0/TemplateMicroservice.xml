@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TemplateMicroservice</name>
+    </assembly>
+    <members>
+        <member name="T:TemplateMicroservice.Controllers.CustomController">
+            <summary>
+            Базовый контроллер для других контроллеов
+            </summary>
+        </member>
+        <member name="M:TemplateMicroservice.Controllers.CustomController.HandleRequest(System.Object)">
+            <summary>
+            Функция, запускающая обработку запроса в Handler-е и возвращающая ответ (если все прошло нормально)
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TemplateMicroservice.Controllers.PersonController">
+            <summary>
+            Контроллер для работы с людьми
+            </summary>
+        </member>
+        <member name="M:TemplateMicroservice.Controllers.PersonController.Create(TemplateMicroservice.BLL.Handlers.PersonCRUD.Create.PersonCreateRequest)">
+            <summary>
+            Добавление человека
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TemplateMicroservice.Controllers.PersonController.Read(TemplateMicroservice.BLL.Handlers.PersonCRUD.Read.PersonReadRequest)">
+            <summary>
+            Получить информацию о человеке
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TemplateMicroservice.Controllers.PersonController.Update(System.Int32,TemplateMicroservice.BLL.Handlers.PersonCRUD.Update.PersonUpdateRequest)">
+            <summary>
+            Изменить информацию о человеке
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TemplateMicroservice.Controllers.PersonController.Delete(TemplateMicroservice.BLL.Handlers.PersonCRUD.Delete.PersonDeleteRequest)">
+            <summary>
+            Удалить человека
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

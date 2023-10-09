@@ -1,5 +1,52 @@
-../.vs*
-../bin*
-../obj*
+# Папки и файлы, которые следует игнорировать
 
+# Игнорировать папку bin и obj, где находятся скомпилированные файлы
+bin/
+obj/
 
+# Игнорировать файлы Visual Studio
+.vscode/
+.vs/
+*_i.c
+*_p.c
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Игнорировать файлы резервных копий и логи
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+TestResults/
+[Tt]est[Rr]esults/
+_ReSharper.*
+*.suo
+*.user
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+*~
+[Tt]humbs.db
+[Tt]est[Ee]xplorer/
+[Tt]est[Rr]esult.*/
+[Tt]est[Rr]un[Rr]esult.*/
+[Ss]tyle[Cc]op.*
+## ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Игнорировать папку packages
+packages/
+*.nupkg
+# Игнорировать файлы с настройками IDE
+/.vscode
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

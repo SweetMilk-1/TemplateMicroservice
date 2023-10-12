@@ -44,6 +44,7 @@ public interface IHttpClientService
     /// <param name="headers">Заголовки</param>
     /// <returns></returns>
     Task<string> Delete(string url, Dictionary<string, string>? headers = null);
+    
     /// <summary>
     /// Запрос с указаниемм типа запросы
     /// </summary>

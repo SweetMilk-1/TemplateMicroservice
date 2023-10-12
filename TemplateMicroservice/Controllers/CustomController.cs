@@ -18,6 +18,6 @@ public class CustomController : ControllerBase
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
-    protected async Task<IActionResult> HandleRequest(object request) =>
+    protected async Task<IActionResult> OkMediatorResponse(object request) =>
         Ok(await Mediator.Send(request));
 }

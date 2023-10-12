@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TemplateMicroservice.BLL.Handlers.Person.GetPeople;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Create;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Delete;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Read;
@@ -22,7 +23,7 @@ public class PersonController : CustomController
     [HttpPost]
     [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-    public Task<IActionResult> Create(PersonCreateRequest request) => HandleRequest(request);
+    public Task<IActionResult> Create(PersonCreateRequest request) => OkMediatorResponse(request);
 
     /// <summary>
     /// Получить информацию о человеке
@@ -32,7 +33,17 @@ public class PersonController : CustomController
     [HttpGet("{Id}")]
     [ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-    public Task<IActionResult> Read([FromRoute] PersonReadRequest request) => HandleRequest(request);
+    public Task<IActionResult> Read([FromRoute] PersonReadRequest request) => OkMediatorResponse(request);
+
+    /// <summary>
+    /// Получить информацию о несокольких людях
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpGet()]
+    [ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+    public Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request) => OkMediatorResponse(request);
 
     /// <summary>
     /// Изменить информацию о человеке
@@ -44,7 +55,7 @@ public class PersonController : CustomController
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
     public Task<IActionResult> Update([FromRoute] int Id, [FromBody] PersonUpdateRequest request) {
         request.Person.Id = Id;
-        return HandleRequest(request);
+        return OkMediatorResponse(request);
     }
 
     /// <summary>
@@ -55,5 +66,5 @@ public class PersonController : CustomController
     [HttpDelete("{Id}")]
     [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-    public Task<IActionResult> Delete([FromRoute] PersonDeleteRequest request) => HandleRequest(request);
+    public Task<IActionResult> Delete([FromRoute] PersonDeleteRequest request) => OkMediatorResponse(request);
 }

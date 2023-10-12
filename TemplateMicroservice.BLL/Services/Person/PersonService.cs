@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using TemplateMicroservice.BLL.Interfaces.Services.Person;
 using TemplateMicroservice.BLL.Models.Person;
 using TemplateMicroservice.Core.Exceptions;
+using TemplateMicroservice.Core.Models;
 using TemplateMicroservice.DAL.Interfaces;
 using PersonEntity = TemplateMicroservice.DAL.Entities.Person;
 
@@ -31,7 +33,7 @@ internal class PersonService : IPersonService
         var personDb = _appDbContext.People.Where(item => item.Id == person.Id).FirstOrDefault();
         if (person == null)
         {
-            throw new HttpResponseException(HttpStatusCode.NotFound, "Человек не найден");
+            throw new NotFoundException("Человек не найден");
         }
         personDb.Age = person.Age;
         personDb.Name = person.Name;
@@ -44,7 +46,7 @@ internal class PersonService : IPersonService
         var person = _appDbContext.People.Where(item => item.Id == id).FirstOrDefault();
         if (person == null)
         {
-            throw new HttpResponseException(HttpStatusCode.NotFound, "Человек не найден");
+            throw new NotFoundException("Человек не найден");
         }
         return _mapper.Map<PersonDto>(person);
     }
@@ -54,11 +56,25 @@ internal class PersonService : IPersonService
         var person = _appDbContext.People.Where(item => item.Id == id).FirstOrDefault();
         if (person == null)
         {
-            throw new HttpResponseException(HttpStatusCode.NotFound, "Человек не найден");
+            throw new NotFoundException("Человек не найден");
         }
         _appDbContext.People.Remove(person);
         await _appDbContext.SaveChangesAsync(cancellationToken);
         return person.Id;
+    }
+
+    public async Task<PaginationModel<PersonDto>> GetWithPagination(int page, int pageCount, CancellationToken cancellationToken)
+    {
+        var total = await _appDbContext.People.AsQueryable().CountAsync(cancellationToken);
+        var query = await _appDbContext.People.Skip(pageCount * (page - 1)).Take(pageCount).ToArrayAsync(cancellationToken);
+        var records = _mapper.Map<IEnumerable<PersonEntity>, IEnumerable<PersonDto>>(query);
+        return new PaginationModel<PersonDto>
+        {
+            Records = records,
+            Page = page,
+            PageCount = pageCount,
+            Total = total
+        };
     }
 }
 

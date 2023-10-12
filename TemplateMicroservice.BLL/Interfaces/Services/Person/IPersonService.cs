@@ -1,5 +1,6 @@
 ﻿
 using TemplateMicroservice.BLL.Models.Person;
+using TemplateMicroservice.Core.Models;
 
 namespace TemplateMicroservice.BLL.Interfaces.Services.Person;
 
@@ -30,4 +31,13 @@ public interface IPersonService
     /// </summary>
     /// <returns></returns>
     Task<int> Delete(int id, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получить список людей (с пагинацией)
+    /// </summary>
+    /// <param name="page">номер страницы</param>
+    /// <param name="pageCount">количество записей на странице</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<PaginationModel<PersonDto>> GetWithPagination(int page, int pageCount, CancellationToken cancellationToken);
 }

@@ -1,8 +1,5 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TemplateMicroservice.Core.Infrastructure.HttpClient;
-using TemplateMicroservice.Core.Infrastructure.MediatR;
 using TemplateMicroservice.Core.Interfaces.HttpClient;
 
 namespace TemplateMicroservice.Core;

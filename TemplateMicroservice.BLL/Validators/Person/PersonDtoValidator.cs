@@ -3,7 +3,7 @@ using TemplateMicroservice.BLL.Models.Person;
 
 namespace TemplateMicroservice.BLL.Validators.Person;
 
-public class PersonDtoValidator: AbstractValidator<PersonDto>
+public class PersonDtoValidator<T>: AbstractValidator<T> where T: PersonDto
 {
     public PersonDtoValidator()
     {

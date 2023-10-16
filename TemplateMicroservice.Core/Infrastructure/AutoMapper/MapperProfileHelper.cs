@@ -5,22 +5,6 @@ using TemplateMicroservice.Core.Interfaces.AutoMapper;
 namespace TemplateMicroservice.Core.Infrastructure.AutoMapper;
 
 /// <summary>
-/// Вспомогательный класс для преобразования одного объекта в другой
-/// </summary>
-public sealed class Map
-{
-    /// <summary>
-    /// Тип класса источника данных
-    /// </summary>
-    public Type Source { get; set; }
-
-    /// <summary>
-    /// Тип целевого класса данных
-    /// </summary>
-    public Type Destination { get; set; }
-}
-
-/// <summary>
 /// Класс для поиска объектов преобразования
 /// </summary>
 public static class MapperProfileHelper
@@ -59,7 +43,7 @@ public static class MapperProfileHelper
     /// </summary>
     /// <param name="rootAssembly">Объект сборки в котором будет происходить поиск</param>
     /// <returns></returns>
-    public static IList<Map> LoadStandardMappings(Assembly rootAssembly)
+    private static IList<Map> LoadStandardMappings(Assembly rootAssembly)
     {
         var types = rootAssembly.GetExportedTypes();
 
@@ -85,7 +69,7 @@ public static class MapperProfileHelper
     /// </summary>
     /// <param name="rootAssembly">Объект сборки в котором будет происходить поиск</param>
     /// <returns></returns>
-    public static IList<IHaveCustomMapping> LoadCustomMappings(Assembly rootAssembly)
+    private static IList<IHaveCustomMapping> LoadCustomMappings(Assembly rootAssembly)
     {
         var types = rootAssembly.GetExportedTypes();
 

@@ -2,14 +2,15 @@ using FluentValidation;
 using MediatR;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using TemplateMicroservice.BLL;
+using TemplateMicroservice.BLL.Services;
 using TemplateMicroservice.Core.Filters;
-using TemplateMicroservice.Core.Infrastructure.MediatR;
 using TemplateMicroservice.DAL;
+using TemplateMicroservice.Core.Infrastructure.MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var applicationAssembly = Assembly.Load("TemplateMicroservice.BLL");
+var coreAssembly = Assembly.Load("TemplateMicroservice.Core");
 
 //Add MVC with filter 
 builder.Services.AddControllers(options => 
@@ -17,11 +18,15 @@ builder.Services.AddControllers(options =>
 ).AddNewtonsoftJson();
 
 //Validators registration
-builder.Services.AddValidatorsFromAssembly(applicationAssembly);
+builder.Services.AddValidatorsFromAssemblies(new Assembly[] { 
+    coreAssembly, 
+    applicationAssembly 
+});
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(new Assembly[] { 
-    applicationAssembly, 
+    applicationAssembly,
+    coreAssembly
 });
 
 // Add MediatR
@@ -29,6 +34,7 @@ builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(applicationAssembly);
 });
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
 
 // Add DbContext ()
 builder.Services.AddAppDbContextService(builder.Configuration.GetConnectionString("MainConnection"));

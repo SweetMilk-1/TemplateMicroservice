@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TemplateMicroservice.BLL.Handlers.Person.GetPeople;
-using TemplateMicroservice.BLL.Handlers.PersonCRUD.Create;
+using TemplateMicroservice.BLL.Handlers.Person.PersonCRUD.Create;
+using TemplateMicroservice.BLL.Handlers.Person.PersonCRUD.ReadAll;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Delete;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Read;
 using TemplateMicroservice.BLL.Handlers.PersonCRUD.Update;
@@ -43,7 +43,7 @@ public class PersonController : CustomController
     [HttpGet()]
     [ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-    public Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request) => OkMediatorResponse(request);
+    public Task<IActionResult> GetPeople([FromQuery] PersonReadAllRequest request) => OkMediatorResponse(request);
 
     /// <summary>
     /// Изменить информацию о человеке
@@ -53,8 +53,8 @@ public class PersonController : CustomController
     [HttpPut("{Id}")]
     [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-    public Task<IActionResult> Update([FromRoute] int Id, [FromBody] PersonUpdateRequest request) {
-        request.Person.Id = Id;
+    public Task<IActionResult> Update([FromRoute] int? Id, [FromBody] PersonUpdateRequest request) {
+        request.Id = Id;
         return OkMediatorResponse(request);
     }
 

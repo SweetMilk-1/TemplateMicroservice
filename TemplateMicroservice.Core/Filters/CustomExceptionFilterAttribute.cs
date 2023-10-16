@@ -27,13 +27,12 @@ public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
 
     private void FluentValidationHandler(ExceptionContext context)
     {
-        var ex = context.Exception as HttpResponseException;
+        var ex = context.Exception as HttpErrorWithStatusCodeException;
 
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
         context.Result = new JsonResult(
             new ErrorModel
-            { 
-                Code = ex.Name,
+            {
                 Message = ex.Message,
                 Data = (context.Exception as ValidationException).AdditionalData
             }
@@ -57,9 +56,9 @@ public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
         var code = HttpStatusCode.InternalServerError;
         string message = "";
 
-        if (context.Exception is HttpResponseException)
+        if (context.Exception is HttpErrorWithStatusCodeException)
         {
-            var ex = context.Exception as HttpResponseException;
+            var ex = context.Exception as HttpErrorWithStatusCodeException;
             code = ex.StatusCode;
             message = ex.Message;
         }
@@ -68,7 +67,6 @@ public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
         if (code == HttpStatusCode.InternalServerError)
         {
             result = new JsonResult(new ErrorModel
-
             {
                 Message = context.Exception.InnerException?.Message ?? context.Exception.Message
             });
@@ -87,8 +85,9 @@ public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
                         requestBody = reader.ReadToEnd();
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    requestBody = $"<Не удалось прочитать тело запроса: {ex.Message}>";
                 }
             }
             else
@@ -101,10 +100,9 @@ public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
         }
         else
         {
-            var ex = context.Exception as HttpResponseException;
+            var ex = context.Exception as HttpErrorWithStatusCodeException;
             result = new JsonResult(new ErrorModel
             {
-                Code = ex.Name,
                 Message = ex.Message,
                 Data = ex.AdditionalData
             });

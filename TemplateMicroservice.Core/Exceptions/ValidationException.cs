@@ -5,7 +5,7 @@ namespace TemplateMicroservice.Core.Exceptions;
 /// <summary>
 /// Класс определяет формат ошибки валидации
 /// </summary>
-public class ValidationException : HttpResponseException
+public class ValidationException : HttpErrorWithStatusCodeException
 {
     /// <summary>
     /// Конструктор
@@ -18,8 +18,8 @@ public class ValidationException : HttpResponseException
     /// <summary>
     /// Преобразовывает список ошибок из FluentValidation в IDictionary
     /// </summary>
-    /// <param name="failures">List ValidationFailure</param>
-    public ValidationException(List<ValidationFailure> failures)
+    /// <param name="errors">List ValidationFailure</param>
+    public ValidationException(IEnumerable<ValidationFailure> failures)
         : this()
     {
         var errors = new Dictionary<string, string[]>();

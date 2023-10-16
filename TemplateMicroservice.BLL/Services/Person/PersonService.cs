@@ -4,6 +4,7 @@ using System.Net;
 using TemplateMicroservice.BLL.Interfaces.Services.Person;
 using TemplateMicroservice.BLL.Models.Person;
 using TemplateMicroservice.Core.Exceptions;
+using TemplateMicroservice.Core.Interfaces.Query;
 using TemplateMicroservice.Core.Models;
 using TemplateMicroservice.DAL.Interfaces;
 using PersonEntity = TemplateMicroservice.DAL.Entities.Person;
@@ -31,7 +32,7 @@ internal class PersonService : IPersonService
     public async Task<int> Update(PersonDto person, CancellationToken cancellationToken)
     { 
         var personDb = _appDbContext.People.Where(item => item.Id == person.Id).FirstOrDefault();
-        if (person == null)
+        if (personDb == null)
         {
             throw new NotFoundException("Человек не найден");
         }
@@ -63,16 +64,19 @@ internal class PersonService : IPersonService
         return person.Id;
     }
 
-    public async Task<PaginationModel<PersonDto>> GetWithPagination(int page, int pageCount, CancellationToken cancellationToken)
+    public async Task<PaginationModel<PersonDto>> GetWithPagination(IPaginationQuery paginationQuery, CancellationToken cancellationToken)
     {
         var total = await _appDbContext.People.AsQueryable().CountAsync(cancellationToken);
-        var query = await _appDbContext.People.Skip(pageCount * (page - 1)).Take(pageCount).ToArrayAsync(cancellationToken);
+        var query = await _appDbContext.People
+            .Skip(paginationQuery.PageCount * (paginationQuery.Page - 1))
+            .Take(paginationQuery.PageCount)
+            .ToArrayAsync(cancellationToken);
         var records = _mapper.Map<IEnumerable<PersonEntity>, IEnumerable<PersonDto>>(query);
         return new PaginationModel<PersonDto>
         {
             Records = records,
-            Page = page,
-            PageCount = pageCount,
+            Page = (int)paginationQuery.Page,
+            PageCount = (int)paginationQuery.PageCount,
             Total = total
         };
     }

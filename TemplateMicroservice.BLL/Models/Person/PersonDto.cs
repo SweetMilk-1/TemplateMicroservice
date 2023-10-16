@@ -8,7 +8,7 @@ public class PersonDto:IMapFrom<PersonEntity>
     /// <summary>
     /// Номер
     /// </summary>
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     /// <summary>
     /// Имя

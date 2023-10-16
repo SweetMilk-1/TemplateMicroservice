@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using TemplateMicroservice.BLL.Handlers.Person.PersonCRUD.Create;
 using TemplateMicroservice.BLL.Interfaces.Services.Person;
 
 namespace TemplateMicroservice.BLL.Handlers.PersonCRUD.Create;
@@ -14,6 +15,6 @@ public class PersonCreateHandler : IRequestHandler<PersonCreateRequest, int>
 
     public Task<int> Handle(PersonCreateRequest request, CancellationToken cancellationToken)
     {
-        return _personService.Create(request.Person, cancellationToken);
+        return _personService.Create(request, cancellationToken);
     }
 }

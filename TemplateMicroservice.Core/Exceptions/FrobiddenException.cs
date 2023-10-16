@@ -10,7 +10,7 @@ namespace TemplateMicroservice.Core.Exceptions
     /// <summary>
     /// Исключение Forbidden
     /// </summary>
-    public class FrobiddenException : HttpRequestException
+    public class FrobiddenException : HttpErrorWithStatusCodeException
     {
         public FrobiddenException(string message, object? additionalData = null) : base(HttpStatusCode.Forbidden, message, additionalData)
         {

@@ -5,7 +5,7 @@ namespace TemplateMicroservice.Core.Exceptions;
 /// <summary>
 /// Исключение при http - запросе к внешним сервисам
 /// </summary>
-public class HttpRequestException:AppException
+public class HttpClientException : AppException
 {
     /// <summary>
     /// Http код полученного ответа
@@ -20,7 +20,7 @@ public class HttpRequestException:AppException
     /// <param name="httpCode">Http-код</param>
     /// <param name="message">Сообщение</param>
     /// <param name="additionalData">Доп. данные</param>
-    public HttpRequestException(HttpStatusCode httpCode, string message, object? additionalData = null):base(message)
+    public HttpClientException(HttpStatusCode httpCode, string message, object? additionalData = null):base(message)
     {
         StatusCode = httpCode;
         AdditionalData = additionalData;

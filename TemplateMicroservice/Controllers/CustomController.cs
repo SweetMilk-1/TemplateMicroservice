@@ -8,6 +8,7 @@ namespace TemplateMicroservice.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+
 public class CustomController : ControllerBase
 {
     private IMediator _mediator;

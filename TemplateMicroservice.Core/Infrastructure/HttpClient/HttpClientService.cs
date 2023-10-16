@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using TemplateMicroservice.Core.Interfaces.HttpClient;
 using HttpClientNet = System.Net.Http.HttpClient;
-using HttpRequestException = TemplateMicroservice.Core.Exceptions.HttpRequestException;
+using HttpRequestException = TemplateMicroservice.Core.Exceptions.HttpClientException;
 
 namespace TemplateMicroservice.Core.Infrastructure.HttpClient;
 

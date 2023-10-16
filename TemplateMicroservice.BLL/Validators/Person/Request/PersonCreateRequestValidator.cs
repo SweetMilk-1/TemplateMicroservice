@@ -1,13 +1,8 @@
-﻿using FluentValidation;
-using TemplateMicroservice.BLL.Handlers.PersonCRUD.Create;
+﻿using TemplateMicroservice.BLL.Handlers.Person.PersonCRUD.Create;
 
 namespace TemplateMicroservice.BLL.Validators.Person
 {
-    public class PersonCreateRequestValidator:AbstractValidator<PersonCreateRequest>
+    public class PersonCreateRequestValidator:PersonDtoValidator<PersonCreateRequest>
     {
-        public PersonCreateRequestValidator()
-        {
-            RuleFor(o => o.Person).SetValidator(new PersonDtoValidator());
-        }
     }
 }

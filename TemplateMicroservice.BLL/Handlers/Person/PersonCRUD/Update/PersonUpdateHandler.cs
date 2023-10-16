@@ -13,6 +13,6 @@ namespace TemplateMicroservice.BLL.Handlers.PersonCRUD.Update
         }
 
         public Task<int> Handle(PersonUpdateRequest request, CancellationToken cancellationToken) =>
-            _personService.Update(request.Person, cancellationToken);
+            _personService.Update(request, cancellationToken);
     }
 }

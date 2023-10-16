@@ -2,7 +2,7 @@
 using TemplateMicroservice.BLL.Interfaces.Services.Person;
 using TemplateMicroservice.BLL.Services.Person;
 
-namespace TemplateMicroservice.BLL
+namespace TemplateMicroservice.BLL.Services
 {
     public static class RegisterBusinessLogicServicesExtension
     {

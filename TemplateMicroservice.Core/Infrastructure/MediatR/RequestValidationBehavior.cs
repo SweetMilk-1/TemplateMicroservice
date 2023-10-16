@@ -38,9 +38,9 @@ public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
             .Select(v => v.Validate(context))
             .SelectMany(result => result.Errors)
             .Where(f => f != null)
-            .ToList();
+            .ToArray();
 
-        if (failures.Count != 0)
+        if (failures.Length > 0)
         {
             throw new ValidationException(failures);
         }

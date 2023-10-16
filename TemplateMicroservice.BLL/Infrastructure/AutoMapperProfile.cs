@@ -2,17 +2,18 @@
 using System.Reflection;
 using TemplateMicroservice.Core.Infrastructure.AutoMapper;
 
-namespace TemplateMicroservice.BLL
+namespace TemplateMicroservice.BLL.Infrastructure
 {
     /// <summary>
     /// Класс, которыей добавляет маппер в проект
     /// </summary>
-    public class BllAutoMapperProfile : Profile
+    public class AutoMapperProfile : Profile
     {
         /// <summary>
         /// Конструктор
         /// </summary>
-        public BllAutoMapperProfile() {
+        public AutoMapperProfile()
+        {
             MapperProfileHelper.MapRegister(this, Assembly.GetExecutingAssembly());
         }
     }

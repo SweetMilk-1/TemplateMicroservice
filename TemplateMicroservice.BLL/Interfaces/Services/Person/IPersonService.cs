@@ -1,5 +1,6 @@
 ﻿
 using TemplateMicroservice.BLL.Models.Person;
+using TemplateMicroservice.Core.Interfaces.Query;
 using TemplateMicroservice.Core.Models;
 
 namespace TemplateMicroservice.BLL.Interfaces.Services.Person;
@@ -39,5 +40,5 @@ public interface IPersonService
     /// <param name="pageCount">количество записей на странице</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<PaginationModel<PersonDto>> GetWithPagination(int page, int pageCount, CancellationToken cancellationToken);
+    Task<PaginationModel<PersonDto>> GetWithPagination(IPaginationQuery paginationQuery, CancellationToken cancellationToken);
 }

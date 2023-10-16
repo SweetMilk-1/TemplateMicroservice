@@ -10,7 +10,7 @@ namespace TemplateMicroservice.Core.Exceptions
     /// <summary>
     /// Исключение Unauthorized
     /// </summary>
-    public class UnauthorizedException : HttpRequestException
+    public class UnauthorizedException : HttpErrorWithStatusCodeException
     {
         public UnauthorizedException(string message, object? additionalData = null) : base(HttpStatusCode.Unauthorized, message, additionalData)
         {

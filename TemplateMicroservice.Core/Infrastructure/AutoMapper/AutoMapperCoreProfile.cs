@@ -6,12 +6,12 @@ namespace TemplateMicroservice.Core.Infrastructure.AutoMapper
     /// <summary>
     /// Класс, которыей добавляет маппер в проект
     /// </summary>
-    public class AutoMapperProfile : Profile
+    public class AutoMapperCoreProfile : Profile
     {
         /// <summary>
         /// Конструктор
         /// </summary>
-        public AutoMapperProfile()
+        public AutoMapperCoreProfile()
         {
             MapperProfileHelper.MapRegister(this, Assembly.GetExecutingAssembly());
         }

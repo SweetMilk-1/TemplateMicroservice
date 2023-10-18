@@ -7,12 +7,12 @@ namespace TemplateMicroservice.BLL.Infrastructure
     /// <summary>
     /// Класс, которыей добавляет маппер в проект
     /// </summary>
-    public class AutoMapperProfile : Profile
+    public class AutoMapperBllProfile : Profile
     {
         /// <summary>
         /// Конструктор
         /// </summary>
-        public AutoMapperProfile()
+        public AutoMapperBllProfile()
         {
             MapperProfileHelper.MapRegister(this, Assembly.GetExecutingAssembly());
         }

@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateMicroservice.BLL", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateMicroservice.Core", "TemplateMicroservice.Core\TemplateMicroservice.Core.csproj", "{7C82BF9D-60ED-4593-81B5-2AC06EB2D72E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMicroservice.Tests", "TemplateMicroservice.Tests\TemplateMicroservice.Tests.csproj", "{AF24DB25-6C16-4777-874E-10B02E4219C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BBE8AC81-FEFC-4A52-8119-C3B34677F1E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{7C82BF9D-60ED-4593-81B5-2AC06EB2D72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C82BF9D-60ED-4593-81B5-2AC06EB2D72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C82BF9D-60ED-4593-81B5-2AC06EB2D72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF24DB25-6C16-4777-874E-10B02E4219C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF24DB25-6C16-4777-874E-10B02E4219C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF24DB25-6C16-4777-874E-10B02E4219C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF24DB25-6C16-4777-874E-10B02E4219C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF24DB25-6C16-4777-874E-10B02E4219C2} = {BBE8AC81-FEFC-4A52-8119-C3B34677F1E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF63EBAF-F61C-462E-AC17-4A3D22415B9C}

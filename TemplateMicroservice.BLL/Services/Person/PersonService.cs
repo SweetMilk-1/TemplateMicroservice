@@ -11,7 +11,7 @@ using PersonEntity = TemplateMicroservice.DAL.Entities.Person;
 
 namespace TemplateMicroservice.BLL.Services.Person;
 
-internal class PersonService : IPersonService
+public class PersonService : IPersonService
 {
     readonly IAppDbContext _appDbContext;
     readonly IMapper _mapper;

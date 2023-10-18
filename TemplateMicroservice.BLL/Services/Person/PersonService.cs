@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 using TemplateMicroservice.BLL.Interfaces.Services.Person;
 using TemplateMicroservice.BLL.Models.Person;
 using TemplateMicroservice.Core.Exceptions;
